@@ -4,46 +4,44 @@ connectDB(); // Connect to MongoDB
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const path = require("path");
 const session = require("express-session");
 
-const authRoutes = require("./routes/authRoutes"); // Import authentication routes
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON and form data
+// Middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// Session configuration
+// Session (optional)
 app.use(session({
-  secret: 'library-management-secret-key', // Change this in production
+  secret: process.env.SESSION_SECRET || "library-management-secret",
   resave: false,
   saveUninitialized: false,
-  cookie: { 
-    secure: false, // Set to true in production with HTTPS
-    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  cookie: {
+    secure: false,
+    maxAge: 24 * 60 * 60 * 1000
   }
 }));
 
-// Serve static files (HTML, CSS, JS)
-app.use(express.static(path.join(__dirname, "public")));
-
-// API Routes
+// API Routes ONLY
 app.use("/api/auth", authRoutes);
 
-// Default route
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "HTML", "main.html"));
+// Health check (for Kubernetes probes)
+app.get("/api/health", (req, res) => {
+  res.json({ status: "ok" });
 });
 
-// Admin login route
-app.get("/admin", (req, res) => {
-  res.sendFile(path.join(__dirname, "public", "HTML", "admin-login.html"));
+// No frontend serving in backend
+app.get("/", (req, res) => {
+  res.json({
+    message: "Backend is running. Use /api/auth routes."
+  });
 });
 
 // Start server
 app.listen(PORT, "0.0.0.0", () => {
-  console.log(`✅ Server running at http://localhost:${PORT}`);
+  console.log(`✅ Backend running on port ${PORT}`);
 });
