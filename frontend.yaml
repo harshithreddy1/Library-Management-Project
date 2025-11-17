@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lib-frontend-deployment
+  namespace: harshith
+  labels:
+    app: lib-f
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lib-f
+  template:
+    metadata:
+      labels:
+        app: lib-f
+    spec:
+      containers:
+        - image: harshithreddy628/lib-frontend:v1
+          name: lib-frontend
+          ports:
+            - containerPort: 80
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend-service
+  namespace: harshith
+spec:
+  type: clusterIP
+  selector:
+    app: lib-f 
+  ports:
+    - port: 80
+      targetPort: 80               

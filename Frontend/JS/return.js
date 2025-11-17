@@ -40,7 +40,7 @@ async function fetchBookIssueDate() {
   if (!studentId || !bookTitle) return;
   
   try {
-    const response = await fetch(`/api/auth/dashboard/${studentId}`);
+    const response = await fetch(`http://44.201.225.98.nip.io/api/auth/dashboard/${studentId}`);
     const result = await response.json();
     
     if (result.success) {
@@ -77,7 +77,7 @@ document.getElementById("returnForm").addEventListener("submit", async function 
     showResult("⏳ Processing book return...", "info");
     
     // Call the backend API to return the book
-    const response = await fetch('/api/auth/return', {
+    const response = await fetch('http://44.201.225.98.nip.io/api/auth/return', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

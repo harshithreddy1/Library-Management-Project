@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: lib-backend-deployment
+  namespace: harshith
+  labels:
+    app: lib-b
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: lib-b
+  template:
+    metadata:
+      labels:
+        app: lib-b
+    spec:
+      containers:
+        - name: lib-backend
+          image: harshithreddy628/lib-backend:v1
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: "production"
+
+            - name: APP_PORT
+              value: "3000"
+
+            - name: MONGO_URI
+              value: "mongodb+srv://reddyharshith628_db_user:Harshith%402000@library-management.trblvo8.mongodb.net/libraryDB"
+
+            - name: SESSION_SECRET
+              value: "P@ssw0rd_983746928374_kub3rn3t3s_s3cr3t"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend-service
+  namespace: harshith
+spec:
+  type: ClusterIP
+  selector:
+    app: lib-b
+  ports:
+    - port: 3000
+      targetPort: 3000

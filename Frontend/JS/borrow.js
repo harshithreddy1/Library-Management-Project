@@ -125,7 +125,7 @@ document.getElementById('student-id').addEventListener('blur', async function() 
 // Load and display currently borrowed books for the student
 async function loadCurrentlyBorrowedBooks(studentId) {
   try {
-    const response = await fetch(`/api/auth/dashboard/${studentId}`);
+    const response = await fetch(`http://44.201.225.98.nip.io/api/auth/dashboard/${studentId}`);
     const result = await response.json();
     
     if (result.success) {
@@ -203,7 +203,7 @@ document.getElementById("borrowForm").addEventListener("submit", async function 
     showMessage("⏳ Processing your request...", "info");
     
     // First, check if the book exists in the inventory
-    const booksResponse = await fetch('/api/auth/books');
+    const booksResponse = await fetch('http://44.201.225.98.nip.io/api/auth/books');
     const booksResult = await booksResponse.json();
     
     if (!booksResult.success) {
@@ -227,7 +227,7 @@ document.getElementById("borrowForm").addEventListener("submit", async function 
     }
 
     // Attempt to borrow the book
-    const borrowResponse = await fetch('/api/auth/borrow', {
+    const borrowResponse = await fetch('http://44.201.225.98.nip.io/api/auth/borrow', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'

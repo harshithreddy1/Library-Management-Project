@@ -79,7 +79,7 @@ function showStudentInterface(student) {
 
 async function fetchDashboardData(studentId, fallbackData) {
   try {
-    const response = await fetch(`/api/auth/dashboard/${studentId}`);
+    const response = await fetch(`http://44.201.225.98.nip.io/api/auth/dashboard/${studentId}`);
     const result = await response.json();
     
     if (result.success) {

@@ -44,7 +44,7 @@ function logout() {
 async function initializeFeaturedBooks() {
   try {
     // Fetch all books from database to get proper IDs
-    const response = await fetch('/api/auth/books');
+    const response = await fetch('http://44.201.225.98.nip.io/api/auth/books');
     const result = await response.json();
     
     if (result.success && result.books) {

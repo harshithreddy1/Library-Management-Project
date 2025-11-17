@@ -40,7 +40,7 @@ async function loadBookDetails() {
     showLoading();
     
     // Fetch book details from the database
-    const response = await fetch('/api/auth/books');
+    const response = await fetch('http://44.201.225.98.nip.io/api/auth/books');
     const result = await response.json();
     
     if (result.success) {
