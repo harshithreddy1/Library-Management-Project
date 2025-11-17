@@ -1,5 +1,7 @@
-FROM nginx:alpine
-RUN rm -rf /usr/share/nginx/html/*
-COPY public/ /usr/share/nginx/html/
-EXPOSE 80
-CMD ["nginx", "-g", "daemon off;"]
+FROM node:alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install 
+COPY . .
+EXPOSE 3000
+CMD ["node", "server.js"]

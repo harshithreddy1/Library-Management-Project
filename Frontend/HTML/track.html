@@ -3,17 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login - Library Portal</title>
-  <link rel="stylesheet" href="/CSS/login.css">
+  <title>Track Borrowing Activity</title>
+  <link rel="stylesheet" href="/CSS/track.css" />
 </head>
 <body>
 
- <header>
+  <header>
     <h1>📚 Edushelf - The New Library Management Portal</h1>
     <p>Your one-stop solution to:</p>
     <nav class="quick-bar">
-     
-       <a href="/HTML/index.html">Home</a>     
+      <a href="/index.html">Home</a>     
       <a href="/HTML/book_search.html">📖 Book Search</a>
       <a href="/HTML/borrow.html">📥 Borrow Book</a>
       <a href="/HTML/return.html">📤 Return Book</a>
@@ -21,35 +20,47 @@
       <a href="/HTML/track.html">📈 Track Activity</a>
     </nav>
   </header>
-
+    
   <center>
+  <div class="activity-container">
+    <h2>📖 Track Borrowing Activity</h2>
 
-  <div class="container">
-    <h2>Student Login</h2>
-    <form id="login-form">
-      <label for="studentId">Student ID <span style="color:red">*</span></label>
-      <input type="text" id="studentId" name="studentId" required>
+    <form id="trackForm">
+      <label for="student-id">Student ID <span class="required">*</span></label>
+      <input type="text" id="student-id" required />
 
-      <label for="password">Password <span style="color:red">*</span></label>
-      <input type="password" id="password" name="password" required>
+      <label for="email">Email ID <span class="required">*</span></label>
+      <input type="email" id="email" required />
 
-      <button type="submit">Login</button>
-      <a href="#">Forgot Password?</a>
+      <button type="submit">View Activity</button>
     </form>
-  </div>
 
-  <!-- Custom Popup Modal -->
-  <div id="popup-modal" class="modal">
-    <div class="modal-content">
-      <p id="popup-message"></p>
+    <div id="activityContent" style="display: none;">
+      <section class="issued-books">
+        <h3>Currently Issued Books</h3>
+        <ul id="issuedList"></ul>
+      </section>
+
+      <section class="overdue-books">
+        <h3>Overdue Books</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Student Name</th>
+              <th>Contact</th>
+              <th>Book</th>
+              <th>Due Date</th>
+              <th>Late Fee</th>
+            </tr>
+          </thead>
+          <tbody id="overdueTable"></tbody>
+        </table>
+      </section>
     </div>
-  </div>
 
-  </center>
+    </center>
 
-  <!-- footer -->
-
-<footer class="footer">
+  <footer class="footer">
   <div class="footer-content">
     <div class="footer-contact">
       <p>📞 <strong>Phone:</strong> <a href="tel:+919876543210">+91 98765 43210</a></p>
@@ -64,6 +75,8 @@
   </div>
 </footer>
 
-  <script src="/JS/login.js"></script>
+
+    <script src="/JS/track.js"></script>
+  </div>
 </body>
 </html>
