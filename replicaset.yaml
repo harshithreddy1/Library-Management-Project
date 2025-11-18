@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: harshith-replica
+  labels:
+    app: reddy
+spec:
+  replicas: 2
+  selector: 
+    matchLabels:
+      app: reddy
+  template:
+    metadata:
+      labels:
+        app: reddy
+    spec:
+      containers:
+        - name: harshith-cont
+          image: harshithreddy628/lib-frontend:v3
+          ports:
+            - containerPort: 80
+
+          

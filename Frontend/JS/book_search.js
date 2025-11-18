@@ -32,7 +32,7 @@ async function searchBooks(searchTerm) {
     console.log("Searching books with term:", searchTerm);
     
     // Call the backend search API
-    const response = await fetch(`http://44.201.225.98.nip.io/api/auth/books/search?query=${encodeURIComponent(searchTerm)}`);
+    const response = await fetch(`/api/auth/books/search?query=${encodeURIComponent(searchTerm)}`);
     const result = await response.json();
     
     if (result.success) {
@@ -53,7 +53,7 @@ async function browseAllBooks() {
     console.log('Loading all books from database...');
     
     // Call the backend API to get all books
-    const response = await fetch('http://44.201.225.98.nip.io/api/auth/books');
+    const response = await fetch('/api/auth/books');
     const result = await response.json();
     
     if (result.success) {

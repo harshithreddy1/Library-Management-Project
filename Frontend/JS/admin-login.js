@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       // Send credentials to server for validation
-      const response = await fetch('http://44.201.225.98.nip.io/api/auth/admin-login', {
+      const response = await fetch('/api/auth/admin-login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

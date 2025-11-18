@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Send to backend
     try {
-      const res = await fetch("http://44.201.225.98.nip.io/api/auth/register", {
+      const res = await fetch("/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

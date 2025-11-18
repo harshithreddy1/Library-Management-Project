@@ -10,7 +10,7 @@ document.getElementById("login-form").addEventListener("submit", function (e) {
   submitButton.textContent = 'Logging in...';
   submitButton.disabled = true;
 
-  fetch("http://44.201.225.98.nip.io/api/auth/login", {
+  fetch("/api/auth/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ studentId, password })
